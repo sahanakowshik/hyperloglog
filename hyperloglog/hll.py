@@ -151,7 +151,7 @@ class HyperLogLog(object):
         Returns the estimate of the cardinality
         """
 
-        #count number or registers equal to 0
+        # count number or registers equal to 0
         V = self.M.count(0)
 
         if V > 0:
