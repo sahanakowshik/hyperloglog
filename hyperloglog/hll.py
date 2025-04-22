@@ -129,6 +129,17 @@ class HyperLogLog(object):
                 raise ValueError('Counters precisions should be equal')
 
         self.M = [max(*items) for items in zip(*([ item.M for item in others ] + [ self.M ]))]
+        
+    def update_M(self, *others):
+        """
+        Merge other counters
+        """
+
+        for item in others:
+            if len(self.M) != len(item):
+                raise ValueError('Counters precisions should be equal')
+
+        self.M = [max(*items) for items in zip(*([ item for item in others ] + [ self.M ]))]
 
     def __eq__(self, other):
         if self.m != other.m:
