@@ -116,6 +116,8 @@ class HyperLogLog(object):
         x = struct.unpack('!Q', sha1(value).digest()[:8])[0]
         j = x & (self.m - 1)
         w = x >> self.p
+        # print(sha1(value).digest()[:8])
+        # print(x, j, w)
 
         self.M[j] = max(self.M[j], get_rho(w, 64 - self.p))
 
